@@ -3,30 +3,54 @@ const notes = [
         id: 1,
         title: "1st Note",
         body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi numquam, a voluptate.",
-        modified: ""
+        modified: "2024-08-12T14:21:34.353Z"
     },
     {
-        id: 1,
-        title: "1st Note",
+        id: 2,
+        title: "2nd Note",
         body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi numquam, a voluptate.",
-        modified: ""
+        modified: "2024-08-12T14:21:01.453Z"
     }
 ];
 
 class notesAPI{
-    getAllNotes(){
+    static getAllNotes() {
+        // خواندن یادداشت‌ها از localStorage
         const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
-        savedNotes.sort((a,b)=> {
-            return new Date(a.modified) > new Date(b.modified) ? -1 : 1;
-        });
-
+        // console.log(savedNotes);
+        savedNotes.sort((a, b) => new Date(b.modified) - new Date(a.modified));
+        return savedNotes;
     }
 
-    saveNote(){
+    static saveNote(note){
+        const allNotes = notesAPI.getAllNotes();
+        const existedNote = allNotes.find((n) => n.id == note.id);
 
+        if(existedNote){
+            existedNote.title = note.title;
+            existedNote.body = note.body;
+            existedNote.modified = new Date().toISOString();
+        }
+        else{
+            note.id = allNotes.length + 1;
+            note.modified = new Date().toISOString();
+            allNotes.push(note);
+        }
+        localStorage.setItem("notes", JSON.stringify(allNotes));
     }
 
-    deleteNote(){
-
+    deleteNote(id){
+        const allNotes = notesAPI.getAllNotes();
+        const updatedNotes = allNotes.filter((n)=> n.id != id);
+        localStorage.setItem("notes", JSON.stringify(allNotes));
     }
 }
+
+// console.log(notes);
+notesAPI.saveNote({
+        id: 2,
+        title: "2nd  edit Note",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi numquam, a voluptate.",
+        modified: "2024-08-12T14:21:01.453Z"
+});
+console.log(notesAPI.getAllNotes());
