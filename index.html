@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="shortcut icon" href="#" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"
+        />
+        <title>My Note App</title>
+      </head>
+<body>  
+    <div class="main-container" id="app">
+        <div class="notes-navbar">
+            <div class="app-logo">NOTE APP</div>
+            <div class="notes-list">
+                <div class="notes-list-item notes-list-item-selected">
+                    <div class="note-header">
+                        <button class="icon-btn"><i class="fas fa-trash-alt"></i></button>
+                        <button class="icon-btn"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <div class="note-title">
+                        Sample title
+                    </div>
+                    <div class="note-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi numquam, a voluptate.
+                    </div>
+                    <div class="note-modified-date">Monday 1:46 PM</div>
+                </div>
+            </div>
+            <button class="add-notes">
+                <i class="fas fa-pencil-alt"></i>
+                Add Note</button>
+        </div>
+        <div class="notes-preview">
+            <input type="text" class="note-title-edit" placeholder="Write your title...">
+            <textarea name="" class="note-body-edit" placeholder="Write your note..."></textarea>
+        </div>
+    </div>
+    <script src="JS/app.js" type="module"></script>
+</body>
+</html>  

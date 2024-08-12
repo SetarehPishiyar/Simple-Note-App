@@ -1,0 +1,209 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    list-style: none;
+  }
+  
+/*  VARIABLES : */
+:root {
+    --primaryColor: #ee67a4; /* صورتی اصلی */
+    --secondaryColor: #e8cbdb; /* صورتی روشن */
+    --complementaryColor: #9e2962; /* آبی به عنوان رنگ مکمل */
+    --accentColor: #f4a261; /* نارنجی ملایم به عنوان رنگ تأکیدی */
+    --mainWhite: #ffffff;
+    --mainBlack: #222222;
+    --mainGrey: #474141;
+    --mainSpacing: 0.1rem;
+    --mainTransition: all 0.3s linear;
+    --bodyColor: #f6f6f6;
+    --nav-width: 500px;
+  }
+  
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--mainBlack);
+    background-color: var(--secondaryColor);
+  }
+
+.hidden{
+    display: none;
+}
+
+.main-container{
+    display: flex;
+}
+
+.notes-navbar{
+    height: 100vh;
+    width: var(--nav-width);
+    background-color: var(--primaryColor);
+    border-radius: 0 75px 0 0;
+    -webkit-border-radius: 0 75px 0 0;
+    -moz-border-radius: 0 75px 0 0;
+    -ms-border-radius: 0 75px 0 0;
+    -o-border-radius: 0 75px 0 0;
+    padding: 1.5rem 1.5rem 0.2rem;
+    position: sticky;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    align-items: center;
+}
+
+.app-logo{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bodyColor);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.notes-list{
+    flex-grow:  1;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* تنظیم ستون‌ها */
+    gap: 1rem;
+}
+
+.notes-list::-webkit-scrollbar{
+    width: 0;
+    display: none;
+}
+
+.notes-list-item {
+    background-color: var(--secondaryColor);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /*margin: 15px 0;
+    */cursor: pointer;
+    border-radius: 0 0 20px 0;
+    -webkit-border-radius: 0 0 20px 0;
+    -moz-border-radius: 0 0 20px 0;
+    -ms-border-radius: 0 0 20px 0;
+    -o-border-radius: 0 0 20px 0;
+    height: 200px;
+    overflow: hidden;
+    /*برایپنهانکردنoverflowکلنوت*/position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.note-header{
+    background-color: var(--complementaryColor);
+    direction: rtl;
+    padding: 5px;
+}
+
+.icon-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.fa-edit,
+.fa-trash-alt {
+    background-color: transparent;
+    color: var(--secondaryColor);
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+.note-title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.note-body {
+    font-size: 1rem;
+    padding: 5px;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
+    overflow: hidden;
+    display: -webkit-box; /* استفاده از نمایش باکس در مرورگرهای Webkit */
+    -webkit-box-orient: vertical; /* تنظیم جهت باکس به صورت عمودی */
+    -webkit-line-clamp: 5; /* تعداد خطوطی که باید نمایش داده شود */
+    text-overflow: ellipsis; /* نمایش سه نقطه برای متن اضافی */
+    max-height: calc(1.2rem * 5);
+    flex-grow: 1; /* اجازه می‌دهد که فضای باقی‌مانده را بگیرد */
+}
+
+.note-modified-date {
+    font-size: 0.9rem;
+    padding: 5px;
+    color: var(--mainGrey);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--secondaryColor); /* رنگ زمینه برای خوانایی بهتر */
+    border-top: 1px solid rgba(0, 0, 0, 0.2); /* جداکننده */
+    text-align: center; /* مرکز چین کردن متن تاریخ */
+}
+
+.add-notes{
+    background-color: var(--complementaryColor);
+    border: none;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    width: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 5px 20px;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--secondaryColor);
+    cursor: pointer;
+}
+
+/* ---------------------- Note Preview -------------------------*/
+.notes-preview{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    flex-grow: 1;
+}
+
+.note-title-edit,
+.note-body-edit{
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 0.7rem;
+    -webkit-border-radius: 0.7rem;
+    -moz-border-radius: 0.7rem;
+    -ms-border-radius: 0.7rem;
+    -o-border-radius: 0.7rem;
+    padding: 0.5rem 1rem;
+}
+
+.note-title-edit{
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.note-body-edit{
+    flex-grow: 1;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+    resize: none;
+}
