@@ -207,3 +207,19 @@
     margin-top: 1rem;
     resize: none;
 }
+.save-btn{
+    background-color: var(--complementaryColor);
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 150px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 5px 20px;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--secondaryColor);
+    cursor: pointer;
+}
