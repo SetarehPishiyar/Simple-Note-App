@@ -39,6 +39,7 @@
 .notes-navbar{
     height: 100vh;
     max-width: var(--nav-width);
+    min-width: var(--nav-width);
     background-color: var(--primaryColor);
     border-radius: 0 75px 0 0;
     -webkit-border-radius: 0 75px 0 0;
@@ -77,7 +78,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(2, minmax(210px, 1fr)); 
     gap: 1rem;
 }
 
