@@ -12,23 +12,54 @@ export default class App{
     _handlers(){
         return {
             addNote: () => {
-                console.log("added");
+                // console.log("added");
+                const addingNote = {
+                    title: "",
+                    body: "",
+                    id: "",
+                }
+                notesAPI.saveNote(addingNote);
+                this.view.updateEditPageVisibility(true);
+                this.refreshNotes();
+                this.avtiveNote = addingNote;
+                this.view.updateActiveNote(addingNote);
             },
             updateNote: (newTitle, newBody) => {
-                console.log(newTitle + "   " + newBody);
+                // console.log(newTitle + "   " + newBody);
+                const updatingNote = {
+                    title: newTitle,
+                    body: newBody,
+                    id: this.avtiveNote.id,
+                }
+                notesAPI.saveNote(updatingNote);
+                this.refreshNotes();
+                this.avtiveNote = updatingNote;
+                this.view.updateActiveNote(updatingNote);
+                this.view.updateEditPageVisibility(true);
             },
             previewNote: (id) =>{
+                // console.log(id);
+                const tempNote = this.notes.find((n) => n.id == id);
+                this.view.updateActiveNote(tempNote);
+                // this.view.updateNoteList(this.notes);
+                this.avtiveNote = tempNote;
+                this.view.updateEditPageVisibility(true);
+            },
+            deleteNote: (id) => {
+                // console.log("delete" + id);
+                // const tempNote = this.notes.find((n) => n.id == id);
+                notesAPI.deleteNoteFromStorage(id);
+                this.refreshNotes();
+                this.view.updateEditPageVisibility(false);
+
+            },
+            editNote: (id) => {
                 console.log(id);
                 const tempNote = this.notes.find((n) => n.id == id);
                 this.view.updateActiveNote(tempNote);
                 // this.view.updateNoteList(this.notes);
+                this.avtiveNote = tempNote;
                 this.view.updateEditPageVisibility(true);
-            },
-            deleteNote: (id) => {
-                console.log("delete" + id);
-            },
-            editNote: (id) => {
-                console.log("edit" + id);
             }
         }
     }

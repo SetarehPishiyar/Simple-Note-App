@@ -40,7 +40,7 @@ export default class notesView{
             });
         });
 
-        saveBtn.addEventListener("click", (event)=> {
+        saveBtn.addEventListener("click", ()=> {
             const newBody = noteBody.value;
             const newTitle = noteTitle.value.trim();
             this.updateNote(newTitle, newBody);
