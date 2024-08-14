@@ -6,6 +6,8 @@ export default class App{
         this.notes = [];
         this.avtiveNote = null;
         this.view = new notesView(root, this._handlers());
+        this.view.updateEditPageVisibility(false);
+        this.view.updatePreviewPageVisibility(false);
         this.refreshNotes();
     }
 
@@ -20,6 +22,7 @@ export default class App{
                 }
                 notesAPI.saveNote(addingNote);
                 this.view.updateEditPageVisibility(true);
+                this.view.updatePreviewPageVisibility(false);
                 this.refreshNotes();
                 this.avtiveNote = addingNote;
                 this.view.updateActiveNote(addingNote);
@@ -36,21 +39,26 @@ export default class App{
                 this.avtiveNote = updatingNote;
                 this.view.updateActiveNote(updatingNote);
                 this.view.updateEditPageVisibility(true);
+                this.view.updatePreviewPageVisibility(false);
             },
             previewNote: (id) =>{
+                this.view.updateEditPageVisibility(false);
+                this.view.updatePreviewPageVisibility(true);
                 // console.log(id);
                 const tempNote = this.notes.find((n) => n.id == id);
                 this.view.updateActiveNote(tempNote);
+                this.view.updatePreviewPage(tempNote);
                 // this.view.updateNoteList(this.notes);
                 this.avtiveNote = tempNote;
-                this.view.updateEditPageVisibility(true);
+                
             },
             deleteNote: (id) => {
-                // console.log("delete" + id);
+                console.log("delete" + id);
                 // const tempNote = this.notes.find((n) => n.id == id);
                 notesAPI.deleteNoteFromStorage(id);
                 this.refreshNotes();
                 this.view.updateEditPageVisibility(false);
+                this.view.updatePreviewPageVisibility(false);
 
             },
             editNote: (id) => {
@@ -60,6 +68,7 @@ export default class App{
                 // this.view.updateNoteList(this.notes);
                 this.avtiveNote = tempNote;
                 this.view.updateEditPageVisibility(true);
+                this.view.updatePreviewPageVisibility(false);
             }
         }
     }

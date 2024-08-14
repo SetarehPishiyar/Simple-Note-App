@@ -19,11 +19,22 @@ export default class notesView{
                 <i class="fas fa-pencil-alt"></i>
                 Add Note</button>
         </div>
-        <div class="notes-preview">
+        <div class="notes-preview notes-preview-selector">
             <input type="text" class="note-title-edit" placeholder="Write your title...">
             <textarea name="" class="note-body-edit" placeholder="Write your note..."></textarea>
             <button class="save-btn">Save</button>
         </div>
+
+        <div class="notes-preview-page notes-preview-page-selector">
+            <div class="note-header">
+                <button class="icon-btn delete-btn"><i class="fas fa-trash-alt"  noteId=""></i></button>
+                <button class="icon-btn edit-btn"><i class="fas fa-edit" noteId=""></i></button>
+            </div>
+            <div class="note-title"></div>
+            <div class="note-body"></div>
+            <div class="note-modified-date"></div>
+        </div>
+
         `;
 
         const addBtn = this.root.querySelector(".add-notes");
@@ -107,12 +118,39 @@ export default class notesView{
         .classList.add("notes-list-item--selected");
     }
 
-    updateEditPageVisibility(visible){
-        this.root.querySelector(".notes-preview").style.visibility = visible ? "visible" : "hidden";
+    updatePreviewPage(note){
+        const title = this.root.querySelector(".notes-preview-page .note-title");
+        const body = this.root.querySelector(".notes-preview-page .note-body");
+        const modified = this.root.querySelector(".notes-preview-page .note-modified-date");
+        title.innerText = note.title;
+        body.innerText = note.body;
+        modified.innerText = "Last modified on: " + new Date(note.modified).toLocaleString("en", {dateStyle:"long", timeStyle:"short"});
+
     }
 
+
+    updateEditPageVisibility(visible) {
+        // console.log(visible);
+        const notesPreview = this.root.querySelector(".notes-preview-selector");
+        if (visible) {
+            notesPreview.classList.remove("hidden");
+            notesPreview.classList.add("notes-preview");
+        } else {
+            notesPreview.classList.add("hidden");
+            notesPreview.classList.remove("notes-preview");
+        }
+    }    
+
     updatePreviewPageVisibility(visible){
-        this.root.querySelector(".notes-preview").style.visibility = visible ? "visible" : "hidden";
+        // console.log(visible);
+        const notesPreview = this.root.querySelector(".notes-preview-page-selector");
+        if (visible) {
+            notesPreview.classList.remove("hidden");
+            notesPreview.classList.add("notes-preview-page");
+        } else {
+            notesPreview.classList.add("hidden");
+            notesPreview.classList.remove("notes-preview-page");
+        }
     }
     
 }
