@@ -11,7 +11,15 @@ const view = new notesView(app, {
     },
     previewNote(id){
         console.log(id);
+    },
+    deleteNote(id){
+        console.log("delete" + id);
+    },
+    editNote(id){
+        console.log("edit" + id);
+
     }
 }); 
 
 view.updateNoteList(notesAPI.getAllNotes());
+view.updateActiveNote(notesAPI.getAllNotes()[1]);
