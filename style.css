@@ -103,6 +103,23 @@
     flex-direction: column;
 }
 
+.notes-list-item--selected {
+    background-color: var(--mainWhite);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /*margin: 15px 0;
+    */cursor: pointer;
+    border-radius: 0 0 20px 0;
+    -webkit-border-radius: 0 0 20px 0;
+    -moz-border-radius: 0 0 20px 0;
+    -ms-border-radius: 0 0 20px 0;
+    -o-border-radius: 0 0 20px 0;
+    height: 200px;
+    overflow: hidden;
+    /*برایپنهانکردنoverflowکلنوت*/position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .note-header{
     background-color: var(--complementaryColor);
     direction: rtl;
